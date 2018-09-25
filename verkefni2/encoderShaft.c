@@ -28,8 +28,8 @@ int power = 127;
 int powerLeft = 127;
 // Reiknar lengd halfum metra
 int radius = 5;
-int ummal = PI * PI * radius;
-int length = 50 / ummal;
+int ummal = 2 * PI * radius;
+int length = 360 * (50 / ummal);
 int counter = 1;
 
 
@@ -41,18 +41,22 @@ void drive(int length, int counter, int direction){
 		motor[rightMotor] = power * direction;
 		motor[leftMotor]  = power * direction;
 	}
-
+	motor[rightMotor] = 0;
+	motor[leftMotor] = 0;
 }
 
-const int BASELENGTH = 573;
+//const int BASELENGTH = 573;
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 task main()
 {
-  wait1Msec(50);  // 2 Second Delay
+  wait1Msec(2000);  // 0.05 Second Delay
 
   //Clear Encoders
-  for(; counter < 5; counter++){
+  for(; counter <= 5; counter++){
   drive(length, counter, 1);
+  wait1Msec(1000);
+  drive(length, counter, -1);
+  wait1Msec(1000);
 	}
   /*while(abs(SensorValue[leftEncoder]) < BASELENGTH)  // While less than 1,592356687898089 rotations on the leftEncoder...
   {
@@ -64,4 +68,3 @@ task main()
   }*/
 
 }
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
