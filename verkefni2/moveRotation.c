@@ -27,16 +27,24 @@
 |*    Digital - Port 1,2  rightEncoder        VEX Quadrature enc.   Right side encoder                *|
 |*    Digital - Port 3,4  leftEncoder         VEX Quadrature enc.   Left side encoder                 *|
 \*-----------------------------------------------------------------------------------------------4246-*/
-int power = 63;
+// Declare Global Variables
+//const float circle = 360;
+
+int power = 127;
 
 int radius = 5;
 int ummal = 2 * PI * radius;
 int length = 360 * (50 / ummal);
 int counter = 1;
 
+const float eX = 2.9;
+
 void forward(int length){
 	SensorValue[rightEncoder] = 0;
   SensorValue[leftEncoder] = 0;
+
+  wait1Msec(1000);
+
 	while(abs(SensorValue[leftEncoder]) < length)
 	{
 		motor[rightMotor] = power;
@@ -46,30 +54,35 @@ void forward(int length){
 	motor[leftMotor] = 0;
 }
 
-void turnLeft () {
+void turnLeft (float rotate) {
 		SensorValue[rightEncoder] = 0;
 		SensorValue[leftEncoder] = 0;
+		int turn = -1 * (eX * rotate);
+
+		wait1Msec(1000);
 
 		// While the encoders have not yet met their goal: (left is compared negativly since it will in reverse)
-	  while(SensorValue[rightEncoder] < (-1 * r * rotations) && SensorValue[leftEncoder] > (r * rotations))
+	  while(SensorValue[rightEncoder] > (turn) && SensorValue[leftEncoder] > (turn))
 	  {
-	    motor[rightMotor] = 63;         // Run the right motor forward at half speed
-	    motor[leftMotor]  = -63;        // Run the left motor backward at half speed
+	    motor[rightMotor] = -127;         // Run the right motor forward at half speed
+	    motor[leftMotor]  = 127;        // Run the left motor backward at half speed
 	  }
 	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
 	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
 
 }
 
-void turnRight () {
+void turnRight (float rotate) {
 		SensorValue[rightEncoder] = 0;
 		SensorValue[leftEncoder] = 0;
+		int turn = (eX * rotate);
 
-			// While the encoders have not yet met their goal: (left is compared negativly since it will in reverse)
-	  while(SensorValue[rightEncoder] < (r * rotations) && SensorValue[leftEncoder] > (-1 * r * rotations))
+		wait1Msec(1000);
+
+	  while(SensorValue[leftEncoder] < turn)
 	  {
-	    motor[rightMotor] = 63;         // Run the right motor forward at half speed
-	    motor[leftMotor]  = -63;        // Run the left motor backward at half speed
+	    motor[rightMotor] = 80;         // Run the right motor bakward at half speed
+	    motor[leftMotor]  = -80;        // Run the left motor forward at half speed
 	  }
 	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
 	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
@@ -83,6 +96,17 @@ task main()
 
   for(; counter <= 4; counter++){
 	  forward(length);
+	  if (counter == 1) {
+	  	turnLeft(90);
+	  wait1Msec(1000);
+	  }
+	  else if (counter == 2 || counter == 3) {
+	  	turnRight(90);
+	  wait1Msec(1000);
+	  }
+	  else {
+
+	  }
 	  wait1Msec(1000);
 	}
 
