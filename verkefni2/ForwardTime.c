@@ -29,12 +29,18 @@ void drive_forward(int time, int counter){
 	motor[rightMotor] = power;
 	motor[leftMotor]  = power;
 	wait1Msec(time * counter);
+	motor[rightMotor] = 0;
+	motor[leftMotor] = 0;
+	wait1Msec(1000);
 }
 
 void drive_backward(int time, int counter){
 	motor[rightMotor] = -power;
 	motor[leftMotor]  = -power;
 	wait1Msec(time * counter);
+	motor[rightMotor] = 0;
+	motor[leftMotor]  = 0;
+	wait1Msec(1000);
 }
 
 task main()

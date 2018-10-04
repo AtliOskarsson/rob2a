@@ -33,7 +33,7 @@ int length = 360 * (50 / ummal);
 int counter = 1;
 
 
-void drive(int length, int direction){
+void drive(int length, int counter, int direction){
 	SensorValue[rightEncoder] = 0;
   SensorValue[leftEncoder] = 0;
 	while(abs(SensorValue[leftEncoder]) < length * counter)
