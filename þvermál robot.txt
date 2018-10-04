@@ -1,3 +1,5 @@
-þvermál robot: 	32,341
+þvermál robot: 	39,269
 þvermál hjól:	10,3
-D/d = 3,14
+D/d = 3,813
+á milli hjóla sömu megin: 22,9
+á milli hjóla öfugu megin: 31,9

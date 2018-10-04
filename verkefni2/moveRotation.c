@@ -37,13 +37,14 @@ int ummal = 2 * PI * radius;
 int length = 360 * (50 / ummal);
 int counter = 1;
 
-const float eX = 2.9;
+//const float eX = 4.1;
+const float eX = 3;
 
 void forward(int length){
 	SensorValue[rightEncoder] = 0;
   SensorValue[leftEncoder] = 0;
 
-  wait1Msec(1000);
+  //wait1Msec(1000);
 
 	while(abs(SensorValue[leftEncoder]) < length)
 	{
@@ -59,7 +60,7 @@ void turnLeft (float rotate) {
 		SensorValue[leftEncoder] = 0;
 		int turn = -1 * (eX * rotate);
 
-		wait1Msec(1000);
+		//wait1Msec(1000);
 
 		// While the encoders have not yet met their goal: (left is compared negativly since it will in reverse)
 	  while(SensorValue[rightEncoder] > (turn) && SensorValue[leftEncoder] > (turn))
@@ -77,12 +78,12 @@ void turnRight (float rotate) {
 		SensorValue[leftEncoder] = 0;
 		int turn = (eX * rotate);
 
-		wait1Msec(1000);
+		//wait1Msec(1000);
 
-	  while(SensorValue[leftEncoder] < turn)
+	  while(SensorValue[leftEncoder] < turn && SensorValue[rightEncoder] < turn)
 	  {
-	    motor[rightMotor] = 80;         // Run the right motor bakward at half speed
-	    motor[leftMotor]  = -80;        // Run the left motor forward at half speed
+	    motor[rightMotor] = 127;         // Run the right motor bakward at half speed
+	    motor[leftMotor]  = -127;        // Run the left motor forward at half speed
 	  }
 	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
 	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
@@ -96,18 +97,19 @@ task main()
 
   for(; counter <= 4; counter++){
 	  forward(length);
+  	wait1Msec(1000);
 	  if (counter == 1) {
 	  	turnLeft(90);
-	  wait1Msec(1000);
+	  	wait1Msec(1000);
 	  }
 	  else if (counter == 2 || counter == 3) {
 	  	turnRight(90);
-	  wait1Msec(1000);
+	  	wait1Msec(1000);
 	  }
 	  else {
-
+			//turnRight(320);
 	  }
-	  wait1Msec(1000);
+	  //wait1Msec(1000);
 	}
 
   motor[rightMotor] = 0;            /* Stop the motors once desired */
