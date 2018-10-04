@@ -1,0 +1,3 @@
+þvermál robot: 	32,341
+þvermál hjól:	10,3
+D/d = 3,14
