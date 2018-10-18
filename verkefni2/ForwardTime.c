@@ -21,13 +21,13 @@
 |*    Motor Port 2        rightMotor          VEX 3-wire module     Right side motor                  *|
 |*    Motor Port 3        leftMotor           VEX 3-wire module     Left side motor                   *|
 \*-----------------------------------------------------------------------------------------------4246-*/
-int power = 64;
+int power = 127;
 int time = 1000;
 int counter = 1;
 
 void drive_forward(int time, int counter){
 	motor[rightMotor] = power;
-	motor[leftMotor]  = power;
+	motor[leftMotor]  = 64;
 	wait1Msec(time * counter);
 	motor[rightMotor] = 0;
 	motor[leftMotor] = 0;
