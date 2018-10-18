@@ -5,6 +5,6 @@ vélmenni I grunnur með VEX
 #PDF skjal
 [Krækja í skrá](https://github.com/eirben/rob2a/blob/master/VEX_Lab_Schedule.pdf)
 
-#Verkefni 2
+# Verkefni 2
 
 [Krækja í myndband](Placeholder)
