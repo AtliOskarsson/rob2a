@@ -25,6 +25,8 @@
 \*----------------------------------------------------------------------------------------------------*/
 
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
+int power = 64;
+
 task main ()
 {
 
@@ -39,17 +41,17 @@ task main ()
     // Raise, lower or do not move arm
 		if(vexRT[Btn6U] == 1)       	//If button 5U is pressed...
 		{
-			motor[armMotor] = 64;    	//...raise the arm.
+			motor[armMotor] = power;    	//...raise the arm.
 		}
 		else if(vexRT[Btn6D] == 1)  	//Else, if button 5D is pressed...
 		{
-			motor[armMotor] = -64;   	//...lower the arm.
+			motor[armMotor] = -power;   	//...lower the arm.
 		}
 		else if(vexRT[Btn5U] == 1) {
-			motor[clawMotor] = 64;
+			motor[clawMotor] = power;
 		}
 		else if(vexRT[Btn5D] == 1) {
-			motor[clawMotor] = -64;
+			motor[clawMotor] = -power;
 		}
 		else                      		//Else (neither button is pressed)...
 		{
@@ -59,7 +61,7 @@ task main ()
 
 		if(vexRT[Btn8D]) {
 				StartTask(calledTask);
-				wait10Msec(4000);
+				wait10Msec(2800);
 		}
 
 		if(vexRT[Btn8U]) {

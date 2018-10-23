@@ -1,10 +1,10 @@
-int power = 127;
+int powerTask = 127;
 int time = 1000;
 int counter = 1;
 
 void drive_forward(int time, int counter){
-	motor[rightMotor] = power;
-	motor[leftMotor]  = power;
+	motor[rightMotor] = powerTask;
+	motor[leftMotor]  = powerTask;
 	wait1Msec(time * counter);
 	motor[rightMotor] = 0;
 	motor[leftMotor] = 0;
@@ -12,8 +12,8 @@ void drive_forward(int time, int counter){
 }
 
 void drive_backward(int time, int counter){
-	motor[rightMotor] = -power;
-	motor[leftMotor]  = -power;
+	motor[rightMotor] = -powerTask;
+	motor[leftMotor]  = -powerTask;
 	wait1Msec(time * counter);
 	motor[rightMotor] = 0;
 	motor[leftMotor]  = 0;
