@@ -24,3 +24,7 @@ Gerið flæðiritið í [Draw.io](http://draw.io) þegar búið farið í  File-
 Skilið vido af vélmenni leysa allar þrautinar setjið á YouTube og geymið í ykkar repository og skilið slóð á videóið í Innu.
 
 ![Mynd af verkefni](/img/verkefni2.png)
+
+# Verkefni 2
+
+[Krækja í myndband](Placeholder)
