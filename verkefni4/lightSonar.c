@@ -35,7 +35,7 @@ void driveForward()
 		{
 			motor[rightMotor] = power;			          // Motor on port2 is run at half (63) power forward
 			motor[leftMotor]  = power;			          // Motor on port3 is run at half (63) power forward
-			if (SensorValue(buttonSwitch) == 1) {
+			if (SensorValue(buttonSwitch) == 1  || vexRT[Btn8D] == 1) {
 				StopAllTasks();
 			};
 		}
@@ -47,9 +47,14 @@ task main()
 	wait1Msec(1000);
 	while(SensorValue(buttonSwitch) == 0) {
 		driveForward();
-
+	if(SensorValue(lightSensor) < 300){
 		motor[rightMotor] = -power;
 		motor[leftMotor]= power;
+		}
+		else {
+			motor[rightMotor] = 0;
+			motor[leftMotor] = 0;
+		}
 	}
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
