@@ -1,6 +1,6 @@
-#pragma config(Sensor, in6,    lineFollowerRIGHT,   sensorLineFollower)
-#pragma config(Sensor, in5,    lineFollowerCENTER,  sensorLineFollower)
-#pragma config(Sensor, in7,    lineFollowerLEFT,    sensorLineFollower)
+#pragma config(Sensor, in6,    lineFollowerRIGHT,  sensorLineFollower)
+#pragma config(Sensor, in7,    lineFollowerCENTER,    sensorLineFollower)
+#pragma config(Sensor, in5,    lineFollowerLEFT,   sensorLineFollower)
 #pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)
 #pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)
 #pragma config(Sensor, dgtl8,  buttonSwitch,   sensorTouch)
@@ -29,13 +29,14 @@
 |*    Analog - Port 3     lineFollowerLEFT    VEX Light Sensor      Front-left, facing down           *|
 \*-----------------------------------------------------------------------------------------------4246-*/
 
+int power = 63;
 
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 task main()
 {
   wait1Msec(2000);          // The program waits for 2000 milliseconds before continuing.
 
-  int threshold = 505;      /* found by taking a reading on both DARK and LIGHT    */
+  int threshold = 2200;      /* found by taking a reading on both DARK and LIGHT    */
                             /* surfaces, adding them together, then dividing by 2. */
   while(true)
   {
@@ -53,22 +54,22 @@ task main()
     if(SensorValue(lineFollowerRIGHT) > threshold)
     {
       // counter-steer right:
-      motor[leftMotor]  = 63;
+      motor[leftMotor]  = power;
       motor[rightMotor] = 0;
     }
     // CENTER sensor sees dark:
     if(SensorValue(lineFollowerCENTER) > threshold)
     {
       // go straight
-      motor[leftMotor]  = 63;
-      motor[rightMotor] = 63;
+      motor[leftMotor]  = power;
+      motor[rightMotor] = power;
     }
     // LEFT sensor sees dark:
     if(SensorValue(lineFollowerLEFT) > threshold)
     {
       // counter-steer left:
       motor[leftMotor]  = 0;
-      motor[rightMotor] = 63;
+      motor[rightMotor] = power;
     }
     if (SensorValue(buttonSwitch) == 1  || vexRT[Btn8D] == 1){
     	StopAllTasks();
