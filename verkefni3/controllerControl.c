@@ -1,5 +1,5 @@
-#pragma config(Motor,  port2,           rightMotor,    tmotorServoContinuousRotation, openLoop, reversed)
-#pragma config(Motor,  port3,           leftMotor,     tmotorServoContinuousRotation, openLoop)
+#pragma config(Motor,  port2,           leftMotor,    tmotorServoContinuousRotation, openLoop, reversed)
+#pragma config(Motor,  port3,           rightMotor,     tmotorServoContinuousRotation, openLoop)
 #pragma config(Motor,  port6,           clawMotor,     tmotorServoContinuousRotation, openLoop)
 #pragma config(Motor,  port7,           armMotor,      tmotorServoContinuousRotation, openLoop)
 #include "controllerTasks.c"
