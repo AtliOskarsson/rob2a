@@ -7,4 +7,4 @@ vélmenni I grunnur með VEX
 
 # Verkefni 2
 
-[Krækja í myndband](Placeholder)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7bVn3QtfHOo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
