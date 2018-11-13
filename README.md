@@ -7,4 +7,9 @@ vélmenni I grunnur með VEX
 
 # Verkefni 2
 
+Búinn að gefa einkunn
+
+# Verkefni 3
+
+
 [Krækja í myndband](https://www.youtube.com/watch?v=7bVn3QtfHOo)
