@@ -65,13 +65,7 @@ task main ()
 		}
 
 		if(vexRT[Btn8U]) {
-				motor[leftMotor] = 0; //Stoppar left motor
-				motor[rightMotor] = 0; //Stoppar right motor
-				motor[armMotor] = 0; //Stoppar arm motor
-				motor[clawMotor] = 0; //Stoppar claw motor
-				StopTask(calledTask);
-
-				wait10Msec(200);
+				StopAllTasks();
 		}
   }
 }
