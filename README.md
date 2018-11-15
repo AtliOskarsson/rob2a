@@ -16,3 +16,13 @@ Búinn að gefa einkunn
 ![alt text](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni3/Verkefni3-fl%C3%A6%C3%B0irit.png "Logo Title Text 1")
 ## Myndband
 [Krækja í myndband](https://www.youtube.com/watch?v=7bVn3QtfHOo)
+
+# Verkefni 4
+
+## Myndband
+[Krækja í myndband](https://www.youtube.com/watch?v=hknoWDUGVT8)
+
+# Verkefni 5
+
+## Mynband
+[Krækja í myndband](https://www.youtube.com/watch?v=dSwTywLIXto)
