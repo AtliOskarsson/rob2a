@@ -10,7 +10,7 @@ vélmenni I grunnur með VEX
 Búinn að gefa einkunn
 
 ## Mynd
-![alt text](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni2/verkefni2.png "Verkefni 3")
+![alt text](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni2/verkefni2.png "Verkefni 2")
 
 # Verkefni 3
 
@@ -28,6 +28,9 @@ Búinn að gefa einkunn
 
 ## Kóði
 [Verkefni 4 kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni4/lightSonar.c)
+
+## Mynd
+![alt text](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni4/verkefni4-Diagram.png "Verkefni 4")
 
 ## Myndband
 [Krækja í myndband](https://www.youtube.com/watch?v=hknoWDUGVT8)
