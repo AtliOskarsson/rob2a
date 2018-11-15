@@ -10,8 +10,12 @@ vélmenni I grunnur með VEX
 Búinn að gefa einkunn
 
 # Verkefni 3
+
 ## Kóði
 [Verkefni 3 kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni3/controllerControl.c)
+
+[Verkefni 3 Tasks kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni3/controllerTasks.c)
+
 ## Mynd
 ![alt text](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni3/Verkefni3-fl%C3%A6%C3%B0irit.png "Logo Title Text 1")
 ## Myndband
@@ -19,10 +23,16 @@ Búinn að gefa einkunn
 
 # Verkefni 4
 
+## Kóði
+[Verkefni 4 kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni4/lightSonar.c)
+
 ## Myndband
 [Krækja í myndband](https://www.youtube.com/watch?v=hknoWDUGVT8)
 
 # Verkefni 5
+
+## Kóði
+[Verkefni 5 kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni5/lineFollower.c)
 
 ## Mynband
 [Krækja í myndband](https://www.youtube.com/watch?v=dSwTywLIXto)
