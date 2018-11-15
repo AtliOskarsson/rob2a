@@ -40,5 +40,8 @@ Búinn að gefa einkunn
 ## Kóði
 [Verkefni 5 kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni5/lineFollower.c)
 
+## Mynd
+![alt text](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni5/verkefni5-diagram.png "Verkefni 5")
+
 ## Mynband
 [Krækja í myndband](https://www.youtube.com/watch?v=dSwTywLIXto)
