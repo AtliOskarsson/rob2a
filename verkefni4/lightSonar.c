@@ -31,7 +31,7 @@ int power = 63;
 
 void driveForward()
 {
-	while(SensorValue(lightSensor) < 300 && (SensorValue(sonarSensor) > 30 || SensorValue(sonarSensor) == -1)) // While the ambient lightSensor reads a value less than 200
+	while(SensorValue(lightSensor) < 300 && (SensorValue(sonarSensor) > 50 || SensorValue(sonarSensor) == -1)) // While the ambient lightSensor reads a value less than 300
 		{
 			motor[rightMotor] = power;			          // Motor on port2 is run at half (63) power forward
 			motor[leftMotor]  = power;			          // Motor on port3 is run at half (63) power forward
@@ -48,8 +48,8 @@ task main()
 	while(SensorValue(buttonSwitch) == 0) {
 		driveForward();
 	if(SensorValue(lightSensor) < 300){
-		motor[rightMotor] = -power;
-		motor[leftMotor]= power;
+		motor[rightMotor] = power;
+		motor[leftMotor]= -power;
 		}
 		else {
 			motor[rightMotor] = 0;
