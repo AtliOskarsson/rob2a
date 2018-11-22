@@ -25,11 +25,10 @@
 |*    Digital - Port 3,4  leftEncoder         VEX Shaft Encoder     Left side                         *|
 \*----------------------------------------------------------------------------------------------------*/
 int power = 63;
-int powerLeft = 127;
 // Reiknar lengd halfum metra
-int radius = 5;
-int ummal = 2 * PI * radius;
-int length = 360 * (50 / ummal);
+float radius = 5.9;
+float ummal = 2 * PI * radius;
+float length = 360 * (50 / ummal);
 int counter = 1;
 
 
