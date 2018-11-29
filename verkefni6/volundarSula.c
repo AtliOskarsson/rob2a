@@ -124,26 +124,100 @@ void turnRight (float rotate) {
 	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
 }
 
+void turn (float rotate int side = 1) {
+		SensorValue[rightEncoder] = 0;
+		SensorValue[leftEncoder] = 0;
+		int turn = (eX * rotate);
+
+		//wait1Msec(1000);
+
+	  while(SensorValue[leftEncoder] < turn && SensorValue[rightEncoder] < turn)
+	  {
+	    motor[rightMotor] = power  * side;         // Run the right motor bakward at half speed
+	    motor[leftMotor]  = -power * side;        // Run the left motor forward at half speed
+	  }
+	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
+	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
+}
 
 void liftArm () {
 
 }
+	int mainLineList[];
+	int secondaryMainLineList[];
+	int turnList[3] = {-1, -1, 1};
+	int SecondaryTurnList[3] = {-1, 1, -1};
+	int SecondSecondaryTurnList[3] = {1, -1 ,1};
+	int SecondarySecondSecondaryTurnList[3] = {1, 1, -1};
 
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 task main()
 {
   wait1Msec(2000);                  // Wait 2000 milliseconds before continuing.
 
-	  while (counter == 1) {
-	  		for(; counter <= 4; counter++){
-		  forward(100);
-	  	wait1Msec(1000);
+		forward(200);
+		turn(20);
+		while(SensorValue(lineFollowerCENTER) < threshold) {
+				turn(1, 1);
+		}
+		forward(50);
+		// TAKA UPP GLASS
+		turn(180);
+		forward(50);
+		turn(20, -1)
+		while(SensorValue(lineFollowerCENTER) < threshold) {
+				turn(1, -1);
+		}
+		forward(150);
+		turn(20);
+		while(SensorValue(lineFollowerCENTER) < threshold) {
+				turn(1, 1);
+		}
+		forward(50);
+		// SETJA GLAS I KORFU
+		turn(180);
+		// --------------------------------------------------- \\
+		for(int i = 0; i < 4; i++) {
+				forward(50);
+				turn(20, turnList[i]);
+				while(SensorValue(lineFollowerCENTER) < threshold) {
+					turn(1, turnList[i]);
+				}
+				forward(50);
+				// TAKA UPP GLASS
+				turn(180);
+				forward(50);
+				turn(20, SecondaryTurnList[i]);
+				while(SensorValue(lineFollowerCENTER) < threshold) {
+					turn(1, SecondaryTurnList[i]);
+				}
+				forward(150);
+				turn(20, SecondSecondaryTurnList[i]);
+				while(SensorValue(lineFollowerCENTER) < threshold) {
+					turn(1, 1);
+				}
+				forward(50);
+				// SETJA GLAS I KORFU
+				turn(180);
+	}
+
+	  /*while (true) {
+	  	for(; counter <= 4; counter++){
+	  	//wait1Msec(1000);
+				forward(200);
+				turn(20);
+				while(SensorValue(lineFollowerCENTER) < threshold) {
+				turn(1, turnList[counter])
+				}
+
 		  if (counter == 1) {
-		  	turnLeft(20);
+		  	forward(200);
+		  	wait1Msec(1000);
 		  	//turnLeft(180);
-		  	while(SensorValue(lineFollowerCENTER) < threshold) {
-		  	turnLeft(1);
-		  }
+		  	while(SensorValue(lineFollowerCENTER) < threshold && SensorValue(lineFollowerLEFT) < threshold) {
+		  	turnRight(1);
+		  	}
+		  	turnRight(20);
 		  	wait1Msec(1000);
 		  }
 		  else if ((counter <= 3 && counter > 1) || (counter == 7)) {
