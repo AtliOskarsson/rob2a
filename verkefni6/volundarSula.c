@@ -134,15 +134,16 @@ task main()
 {
   wait1Msec(2000);                  // Wait 2000 milliseconds before continuing.
 
-	  while (true) {
+	  while (counter == 1) {
 	  		for(; counter <= 4; counter++){
 		  forward(100);
 	  	wait1Msec(1000);
 		  if (counter == 1) {
-		  	turnLeft(180);
-		  	/*while(SensorValue(lineFollowerCENTER) < threshold) {
+		  	turnLeft(20);
+		  	//turnLeft(180);
+		  	while(SensorValue(lineFollowerCENTER) < threshold) {
 		  	turnLeft(1);
-		  }*/
+		  }
 		  	wait1Msec(1000);
 		  }
 		  else if ((counter <= 3 && counter > 1) || (counter == 7)) {
