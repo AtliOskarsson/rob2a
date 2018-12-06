@@ -39,13 +39,13 @@
 // Declare Global Variables
 //const float circle = 360;
 
-int power = 63;
+int power = 50;
 
 float radius = 5.9;
 float ummal = 2 * PI * radius;
 int counter = 1;
 
-int threshold = 1000;      /* found by taking a reading on both DARK and LIGHT    */
+int threshold = 1500;      /* found by taking a reading on both DARK and LIGHT    */
   										     /* surfaces, adding them together, then dividing by 2. */
 
 //const float eX = 4.1;
@@ -79,6 +79,7 @@ void forward(int dist){
 	SensorValue[rightEncoder] = 0;
   SensorValue[leftEncoder] = 0;
 	float length = 360 * (dist / ummal);
+	wait1Msec(500);
 
   //wait1Msec(1000);
 
@@ -88,54 +89,77 @@ void forward(int dist){
 	}
 	motor[rightMotor] = 0;
 	motor[leftMotor] = 0;
+
+	SensorValue[rightEncoder] = 0;
+	SensorValue[leftEncoder] = 0;
 }
 
 void turnLeft (float rotate) {
 		SensorValue[rightEncoder] = 0;
 		SensorValue[leftEncoder] = 0;
 		int turn = -1 * (eX * rotate);
+		wait1Msec(500);
 
 		//wait1Msec(1000);
+		motor[rightMotor] = power;         // Run the right motor bakward at half speed
+	  motor[leftMotor]  = -power;        // Run the left motor forward at half speed
+	  wait1Msec(500);
 
 		// While the encoders have not yet met their goal: (left is compared negativly since it will in reverse)
-	  while(SensorValue[rightEncoder] > (turn) && SensorValue[leftEncoder] > (turn))
+	  while((SensorValue[rightEncoder] > turn && SensorValue[leftEncoder] > turn) && SensorValue[lineFollowerCENTER] < threshold)
 	  {
 	    motor[rightMotor] = power;         // Run the right motor forward at half speed
 	    motor[leftMotor]  = -power;        // Run the left motor backward at half speed
 	  }
-	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
-	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
+	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function*/
+	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends.*/
 
+		SensorValue[rightEncoder] = 0;
+		SensorValue[leftEncoder] = 0;
 }
 
 void turnRight (float rotate) {
 		SensorValue[rightEncoder] = 0;
 		SensorValue[leftEncoder] = 0;
 		int turn = (eX * rotate);
+		wait1Msec(500);
 
 		//wait1Msec(1000);
+	    motor[rightMotor] = -power;         // Run the right motor bakward at half speed
+	    motor[leftMotor]  = power;        // Run the left motor forward at half speed
+	    wait1Msec(500);
 
-	  while(SensorValue[leftEncoder] < turn && SensorValue[rightEncoder] < turn)
+	  while((SensorValue[leftEncoder] < turn && SensorValue[rightEncoder] < turn) && (SensorValue[lineFollowerCENTER] < threshold && SensorValue[lineFollowerLEFT] < threshold))
 	  {
 	    motor[rightMotor] = -power;         // Run the right motor bakward at half speed
 	    motor[leftMotor]  = power;        // Run the left motor forward at half speed
 	  }
-	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
-	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
-}
+	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function*/
+	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends.*/
 
-void turn (float rotate int side = 1) {
 		SensorValue[rightEncoder] = 0;
 		SensorValue[leftEncoder] = 0;
-		int turn = (eX * rotate);
+}
 
-		//wait1Msec(1000);
+void turnForLine (float rotate, int side) {
+		SensorValue[rightEncoder] = 0;
+		SensorValue[leftEncoder] = 0;
+		float turns = (eX * rotate);
+		if (side == 1){
+			while(SensorValue[leftEncoder] > -turns && SensorValue[rightEncoder] > -turns/* && SensorValue(lineFollowerCENTER) < threshold*/)
+			{
+			  motor[rightMotor] = power  * side;         // Run the right motor bakward at half speed
+			  motor[leftMotor]  = -power * side;        // Run the left motor forward at half speed
+			}
+		}
+		else {
+			while(SensorValue[leftEncoder] < turns && SensorValue[rightEncoder] < turns && (SensorValue[lineFollowerCENTER] < threshold && SensorValue[lineFollowerRIGHT] < threshold))
+			{
+			  motor[rightMotor] = power  * side;         // Run the right motor bakward at half speed
+			  motor[leftMotor]  = -power * side;        // Run the left motor forward at half speed
+			}
+		}
 
-	  while(SensorValue[leftEncoder] < turn && SensorValue[rightEncoder] < turn)
-	  {
-	    motor[rightMotor] = power  * side;         // Run the right motor bakward at half speed
-	    motor[leftMotor]  = -power * side;        // Run the left motor forward at half speed
-	  }
 	  motor[rightMotor] = 0;            /* Stop both motors!  This is important so that each function          */
 	  motor[leftMotor]  = 0;            /* can act independantly as a "chunk" of code, without any loose ends. */
 }
@@ -143,8 +167,32 @@ void turn (float rotate int side = 1) {
 void liftArm () {
 
 }
-	int mainLineList[];
-	int secondaryMainLineList[];
+/*
+void commands() {
+	forward(200);
+	wait1Msec(50);
+	turnForLine(90, 1);
+	wait1Msec(50);
+	forward(50);
+	wait1Msec(50);
+	turn(180, 1);
+	wait1Msec(50);
+	forward(50);
+	wait1Msec(50);
+	turnForLine(20, -1);
+	wait1Msec(50);
+	forward(150);
+	wait1Msec(50);
+	turnForLine(20, 1);
+	wait1Msec(50);
+	forward(50);
+	wait1Msec(50);
+	turn(180, 1);
+	wait1Msec(50);
+}*/
+
+	//int mainLineList[];
+	//int secondaryMainLineList[];
 	int turnList[3] = {-1, -1, 1};
 	int SecondaryTurnList[3] = {-1, 1, -1};
 	int SecondSecondaryTurnList[3] = {1, -1 ,1};
@@ -153,31 +201,27 @@ void liftArm () {
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 task main()
 {
-  wait1Msec(2000);                  // Wait 2000 milliseconds before continuing.
+	forward(205);
+	wait1Msec(100);
+  turnRight(360);
+  wait1Msec(100);
+  forward(55);
+  wait1Msec(100);
+  turnRight(180);
+  wait1Msec(100);
+  forward(55);
+  wait1Msec(100);
+  turnLeft(90);
+  wait1Msec(100);
+  forward(155);
+  wait1Msec(100);
+  turnRight(90);
+  wait1Msec(100);
+  forward(55);
 
-		forward(200);
-		turn(20);
-		while(SensorValue(lineFollowerCENTER) < threshold) {
-				turn(1, 1);
-		}
-		forward(50);
-		// TAKA UPP GLASS
-		turn(180);
-		forward(50);
-		turn(20, -1)
-		while(SensorValue(lineFollowerCENTER) < threshold) {
-				turn(1, -1);
-		}
-		forward(150);
-		turn(20);
-		while(SensorValue(lineFollowerCENTER) < threshold) {
-				turn(1, 1);
-		}
-		forward(50);
-		// SETJA GLAS I KORFU
-		turn(180);
-		// --------------------------------------------------- \\
-		for(int i = 0; i < 4; i++) {
+
+		/* --------------------------------------------------- */
+		/*for(int i = 0; i < 4; i++) {
 				forward(50);
 				turn(20, turnList[i]);
 				while(SensorValue(lineFollowerCENTER) < threshold) {
@@ -185,7 +229,7 @@ task main()
 				}
 				forward(50);
 				// TAKA UPP GLASS
-				turn(180);
+				turn(180, 1);
 				forward(50);
 				turn(20, SecondaryTurnList[i]);
 				while(SensorValue(lineFollowerCENTER) < threshold) {
@@ -198,8 +242,8 @@ task main()
 				}
 				forward(50);
 				// SETJA GLAS I KORFU
-				turn(180);
-	}
+				turn(180, 1);
+				}
 
 	  /*while (true) {
 	  	for(; counter <= 4; counter++){
@@ -232,13 +276,12 @@ task main()
 		  	wait1Msec(1000);
 		  }
 		  //wait1Msec(1000);
-		}
+		}*/
 
 	  motor[rightMotor] = 0;            /* Stop the motors once desired */
 	  motor[leftMotor]  = 0;            /* distance has been reached.   */
 	  if (SensorValue(buttonSwitch) == 1  || vexRT[Btn8D] == 1 || SensorValue(leverSwitch) == 1){
 	  	StopAllTasks();
 	  }
-	}
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
