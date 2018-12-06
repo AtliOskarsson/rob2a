@@ -45,3 +45,9 @@ Búinn að gefa einkunn
 
 ## Mynband
 [Krækja í myndband](https://www.youtube.com/watch?v=dSwTywLIXto)
+
+# Verkefni 6
+
+## Við reyndum okkar besta
+
+[Hér er verkefni 6 kóði](https://github.com/AtliOskarsson/rob2a/blob/master/verkefni6/volundarSula.c)
